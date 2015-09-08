@@ -1,0 +1,10 @@
+<h1>Listing all Todo Lists</h1>
+
+<% @todo_lists.each do |list| %>
+    <div>
+    <h2><%= link_to list.title, list %></h2>
+    <p><%= link_to list.description, list %></p>
+    </div>
+<% end %>
+
+<%= link_to "New Todo List", new_todo_list_path %>
