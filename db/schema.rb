@@ -21,9 +21,12 @@ ActiveRecord::Schema.define(version: 20150908113143) do
   end
 
   create_table "todo_tasks", force: :cascade do |t|
+    t.integer  "todo_list_id"
     t.string   "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
+
+  add_index "todo_tasks", ["todo_list_id"], name: "index_todo_tasks_on_todo_list_id"
 
 end

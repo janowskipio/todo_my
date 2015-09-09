@@ -2,9 +2,14 @@
 
 <% @todo_lists.each do |list| %>
     <div>
-    <h2><%= link_to list.title, list %></h2>
-    <p><%= link_to list.description, list %></p>
+      <h2><%= list.title %></h2>
+      <p><%= list.description %></p>
+    </div>
+    <div>
+      <%= link_to 'Show', todo_list_path(list) %> |
+      <%= link_to 'Edit', edit_todo_list_path(list) %> |
+      <%= link_to 'Delete', list, method: :delete %>
     </div>
 <% end %>
 
-<%= link_to "New Todo List", new_todo_list_path %>
+<%= link_to 'New Todo List', new_todo_list_path %>

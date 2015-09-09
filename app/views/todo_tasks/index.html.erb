@@ -7,3 +7,9 @@
   <strong>Description:</strong>
   <%= @todo_list.description %>
 </p>
+
+<% @todo_list.todo_tasks.each do |task| %>
+    <p><%= task.content %></p>
+<% end %>
+
+<%= render 'todo_tasks/form' %>
