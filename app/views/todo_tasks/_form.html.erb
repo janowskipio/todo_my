@@ -1,6 +1,17 @@
+<% if @todo_task.errors.any? %>
+  <div>
+    <p>Process failed. Following errors occurred during the process:</p>
+    <ul>
+      <% @todo_task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for([@todo_list, @todo_task]) do |f| %>
-    <p>
-      <%= f.text_field :content %>
-    </p>
-    <p><%= f.submit %></p>
+  <p>
+    <%= f.text_field :content %>
+  </p>
+  <p><%= f.submit %></p>
 <% end %>

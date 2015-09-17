@@ -4,13 +4,18 @@ class TodoTasksController < ApplicationController
 
   def create
     @todo_task = @todo_list.todo_tasks.new(todo_task_params)
-    @todo_task.save
-    redirect_to @todo_list
+    if @todo_task.save
+      flash[:notice] = 'Todo task created successfully.'
+    else
+      flash[:notice] = @todo_task.errors.full_messages.first
+    end
+    redirect_to(@todo_list)
   end
 
   def destroy
     @todo_task.destroy
-    redirect_to @todo_list
+    flash[:notice] = 'Todo task destroyed successfully.'
+    redirect_to(@todo_list)
   end
 
   def index
@@ -22,8 +27,12 @@ class TodoTasksController < ApplicationController
   end
 
   def update
-    @todo_task.update_attributes(todo_task_params)
-    redirect_to(@todo_list)
+    if @todo_task.update_attributes(todo_task_params)
+      flash[:notice] = 'Todo task updated successfully.'
+      redirect_to(@todo_list)
+    else
+      render('edit')
+    end
   end
 
   private

@@ -1,5 +1,5 @@
 class TodoListsController < ApplicationController
-  before_action :set_todo_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_todo_list, except: [:index, :create, :new]
 
   def index
     @todo_lists = TodoList.all
@@ -7,13 +7,21 @@ class TodoListsController < ApplicationController
 
   def create
     @todo_list = TodoList.new(todo_list_params)
-    @todo_list.save
-    redirect_to @todo_list
+    if @todo_list.save
+      flash[:notice] = 'Todo list created successfully.'
+      redirect_to @todo_list
+    else
+      render('new')
+    end
   end
 
   def update
-    @todo_list.update_attributes(todo_list_params)
-    redirect_to root_path
+    if @todo_list.update_attributes(todo_list_params)
+      flash[:notice] = 'Todo list updated successfully.'
+      redirect_to root_path
+    else
+      render('edit')
+    end
   end
 
   def new
@@ -29,6 +37,7 @@ class TodoListsController < ApplicationController
 
   def destroy
     @todo_list.destroy
+    flash[:notice] = 'Todo list destroyed successfully.'
     redirect_to root_path
   end
 

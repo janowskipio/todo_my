@@ -1,3 +1,14 @@
+<% if @todo_list.errors.any? %>
+  <div>
+    <p>Process failed. Following errors occurred during the process:</p>
+    <ul>
+      <% @todo_list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for(@todo_list) do |f| %>
     <p>
       <%= f.label :title %><br>
