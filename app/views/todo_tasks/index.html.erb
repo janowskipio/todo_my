@@ -1,3 +1,5 @@
+<%= link_to 'Back to Todo Lists', todo_lists_path %>
+
 <p>
   <strong>Title:</strong>
   <%= @todo_list.title %>
@@ -8,8 +10,14 @@
   <%= @todo_list.description %>
 </p>
 
-<% @todo_list.todo_tasks.each do |task| %>
-    <p><%= task.content %></p>
+<% @todo_tasks.each do |task| %>
+    <div>
+      <p><%= task.content %></p>
+    </div>
+    <div>
+      <%= link_to 'Edit', edit_todo_list_todo_task_path(@todo_list, task) %> |
+      <%= link_to 'Delete', [@todo_list, task], method: :delete %>
+    </div>
 <% end %>
 
 <%= render 'todo_tasks/form' %>

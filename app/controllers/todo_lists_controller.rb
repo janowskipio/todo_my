@@ -12,7 +12,7 @@ class TodoListsController < ApplicationController
   end
 
   def update
-    @todo_list.update(todo_list_params)
+    @todo_list.update_attributes(todo_list_params)
     redirect_to root_path
   end
 
