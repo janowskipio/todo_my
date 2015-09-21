@@ -1,6 +1,8 @@
 class TodoTasksController < ApplicationController
+
   before_action :get_todo_list
   before_action :get_todo_task, except: [:create, :index]
+  before_action :confirm_logged_in
 
   def create
     @todo_task = @todo_list.todo_tasks.new(todo_task_params)

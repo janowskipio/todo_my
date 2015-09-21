@@ -8,6 +8,15 @@
 </head>
 <body>
   <div>
+    <% if current_user %>
+      Logged in as <%= current_user.email %>.
+      <%= link_to 'Log out', :controller => 'users', :action => 'logout' %>
+    <% else %>
+      <%= link_to 'Sign up', new_user_path %> or
+      <%= link_to 'Log In', :controller => 'users', :action => 'login' %>
+    <% end %>
+  </div>
+  <div>
     <% if !flash[:notice].blank? %>
       <%= flash[:notice] %>
     <% end %>

@@ -1,5 +1,7 @@
 class TodoListsController < ApplicationController
+
   before_action :set_todo_list, except: [:index, :create, :new]
+  before_action :confirm_logged_in
 
   def index
     @todo_lists = TodoList.all
